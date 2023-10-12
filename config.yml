@@ -11,7 +11,7 @@ configure_macos: true
 
 homebrew_path_prefix: "{{ (ansible_machine == 'arm64') | ternary('/opt/homebrew', '/usr/local') }}"
 
-homebrew_packages:
+homebrew_installed_packages:
   - terraform
   - awscli
   - azure-cli
@@ -34,7 +34,11 @@ homebrew_packages:
   - cloudflared
   - tree
 
-homebrew_casks:
+homebrew_taps:
+- homebrew/core
+- homebrew/cask
+
+homebrew_installed_casks:
   - onedrive
   - arc
   - discord
