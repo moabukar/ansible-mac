@@ -84,9 +84,14 @@
       tags:
         - emacs
 
-    - import_tasks: tasks/launchd_load.yml
+    - name: Install dotfiles
+      include_role:
+        name: dotfiles
+        apply:
+          tags:
+            - dotfiles
       tags:
-        - launchd
+        - tex
 
     - import_tasks: tasks/customize.yml
       tags:
@@ -96,13 +101,13 @@
       tags:
         - dotfiles
 
-    - include_role:
-        name: install_fonts_from_archive
-        apply:
-          tags:
-            - fonts
-      vars:
-        font_archive_url: "{{ item }}"
-      with_items: "{{ font_archives }}"
-      tags:
-        - fonts
+    # - include_role:
+    #     name: install_fonts_from_archive
+    #     apply:
+    #       tags:
+    #         - fonts
+    #   vars:
+    #     font_archive_url: "{{ item }}"
+    #   with_items: "{{ font_archives }}"
+    #   tags:
+    #     - fonts
