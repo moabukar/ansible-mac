@@ -35,8 +35,8 @@ homebrew_installed_packages:
   - tree
 
 homebrew_taps:
-- homebrew/core
-- homebrew/cask
+  - homebrew/core
+  - homebrew/cask
 
 homebrew_installed_casks:
   - onedrive

@@ -100,14 +100,3 @@
     - import_tasks: tasks/ssh_setup.yml
       tags:
         - dotfiles
-
-    # - include_role:
-    #     name: install_fonts_from_archive
-    #     apply:
-    #       tags:
-    #         - fonts
-    #   vars:
-    #     font_archive_url: "{{ item }}"
-    #   with_items: "{{ font_archives }}"
-    #   tags:
-    #     - fonts
