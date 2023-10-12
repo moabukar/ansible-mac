@@ -12,10 +12,9 @@
         - "{{ playbook_dir }}/config.yml"
       tags: ['always']
   roles:
-    - role: geerlingguy.mac.homebrew
-      tags: ['homebrew']
+    # - role: geerlingguy.mac.homebrew
+    #   tags: ['homebrew']
     - role: dotfiles
     - role: iterm2
     - role: macports
     - role: terraform
-    - role: elliotweiser.osx-command-line-tools
