@@ -75,14 +75,14 @@
         - emacs
         - dotfiles
 
-    - name: Install Emacs
-      include_role:
-        name: emacs
-        apply:
-          tags:
-            - emacs
-      tags:
-        - emacs
+    # - name: Install Emacs
+    #   include_role:
+    #     name: emacs
+    #     apply:
+    #       tags:
+    #         - emacs
+    #   tags:
+    #     - emacs
 
     - name: Install dotfiles
       include_role:
@@ -93,10 +93,10 @@
       tags:
         - tex
 
-    - import_tasks: tasks/customize.yml
-      tags:
-        - customize
+    # - import_tasks: tasks/customize.yml
+    #   tags:
+    #     - customize
 
-    - import_tasks: tasks/ssh_setup.yml
-      tags:
-        - dotfiles
+    # - import_tasks: tasks/ssh_setup.yml
+    #   tags:
+    #     - dotfiles
