@@ -1,0 +1,10 @@
+---
+# ==============================================================================
+# VS Code
+# ==============================================================================
+
+- name: Install VS Code extensions.
+  command: code --install-extension {{ item }}
+  loop: "{{ vscode_extensions }}"
+  register: vscode_extension
+  changed_when: "'successfully installed' in vscode_extension.stdout"
