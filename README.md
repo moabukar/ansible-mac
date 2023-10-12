@@ -1,8 +1,8 @@
 # macOS setup via Ansible
 
-<p float="centre">
-  <img src="./images/ansible.png" width="100" />
-  <img src="./images/sonoma1.png" width="150" /> 
+<p align="center">
+  <img width="200" src="./images/sonoma.png">
+  <img width="140" src="./images/ansible.png">
 </p>
 
 - This is my personal macOS setup using Ansible and will be updating it as I go along. (Currently compatible for macOS Sonoma 14.0)
