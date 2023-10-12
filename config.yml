@@ -1,0 +1,64 @@
+---
+
+configure_homebrew: true
+configure_dotfiles: true
+configure_extras: true
+configure_macos: true
+
+# ==============================================================================
+# Homebrew
+# ==============================================================================
+
+homebrew_path_prefix: "{{ (ansible_machine == 'arm64') | ternary('/opt/homebrew', '/usr/local') }}"
+
+homebrew_packages:
+  - terraform
+  - awscli
+  - azure-cli
+  - kubectl
+  - zsh
+  - jq
+  - helm
+  - argocd
+  - go
+  - tfswitch
+  - zsh-syntax-highlighting
+  - zsh-history-substring-search
+  - coreutils
+  - exa
+  - wget
+  - nano
+  - git
+  - php
+  - composer
+  - cloudflared
+
+homebrew_casks:
+  - onedrive
+  - arc
+  - discord
+  - obsidian
+  - visual-studio-code
+  - httpie
+  - docker
+  - rancher-desktop
+  - slack
+  - google-chrome
+  - notion
+  - postman
+  - visual-studio-code"
+  - zoom
+  - iterm2
+# ==============================================================================
+# Extras
+# ==============================================================================
+
+vscode_extensions:
+  - equinusocio.vsc-material-theme
+  - pkief.material-icon-theme
+  - ms-azuretools.vscode-docker
+  - dbaeumer.vscode-eslint
+  - dotenv.dotenv-vscode
+  - bmewburn.vscode-intelephense-client
+  - bradlc.vscode-tailwindcss
+  - astro-build.astro-vscode
