@@ -1,0 +1,108 @@
+---
+- import_playbook: bootstrap-playbook.yml
+
+- name: Setup
+  hosts: localhost
+  become: false
+  vars_files:
+    - vars/const.yml
+    - vars/dmgs.yml
+    - vars/fonts.yml
+    - vars/launchd.yml
+    - vars/mas.yml
+    - vars/pip.yml
+    - vars/ports.yml
+    - vars/versions.yml
+  tasks:
+    - name: Install python modules
+      import_tasks: tasks/pip.yml
+      tags:
+        - pip
+
+    - name: Install ports
+      import_tasks: tasks/install_ports.yml
+      tags:
+        - ports
+
+    - name: Install MacTeX
+      include_role:
+        name: mactex
+        apply:
+          tags:
+            - tex
+      tags:
+        - tex
+
+    - name: Install Applications
+      import_tasks: tasks/install_apps.yml
+      tags:
+        - apps
+
+    - name: Install node.js with nvm
+      include_role:
+        name: node
+        apply:
+          tags:
+            - node
+      tags:
+        - node
+
+    - name: Clone oh my zsh
+      git:
+        repo: https://github.com/ohmyzsh/ohmyzsh
+        dest: "{{  '~/.zsh/ohmyzsh' | expanduser }}"
+      tags:
+        - dotfiles
+
+    - name: Clone dotfiles
+      git:
+        repo: git@github.com:moabukar/dotfiles.git
+        dest: "{{  '~/.cfg' | expanduser }}"
+        bare: true
+      tags:
+        - dotfiles
+
+    - name: Check out dotfiles
+      command: "git --git-dir={{ '~/.cfg' | expanduser }} --work-tree={{ '~' | expanduser }} checkout"
+      tags:
+        - dotfiles
+
+    - name: Clone .emacs.d
+      git:
+        repo: git@github.com:moabukar/dot-emacs.git
+        dest: "{{ '~/.emacs.d' | expanduser }}"
+      tags:
+        - emacs
+        - dotfiles
+
+    - name: Install Emacs
+      include_role:
+        name: emacs
+        apply:
+          tags:
+            - emacs
+      tags:
+        - emacs
+
+    - import_tasks: tasks/launchd_load.yml
+      tags:
+        - launchd
+
+    - import_tasks: tasks/customize.yml
+      tags:
+        - customize
+
+    - import_tasks: tasks/ssh_setup.yml
+      tags:
+        - dotfiles
+
+    - include_role:
+        name: install_fonts_from_archive
+        apply:
+          tags:
+            - fonts
+      vars:
+        font_archive_url: "{{ item }}"
+      with_items: "{{ font_archives }}"
+      tags:
+        - fonts

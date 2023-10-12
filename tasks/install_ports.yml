@@ -1,0 +1,47 @@
+---
+# selfupdate here, once, so that we don't stupidly do it for every port we install...
+- name: Run port selfupdate
+  macports:
+    selfupdate: true
+  become: true
+
+# We need poppler for pdftools in emacs, but it frequently misbehaves during upgrades.
+#
+# force deactivation of poppler on condition that it's about to be upgraded.
+# check port list outdated output after selfupdate but before upgrade.
+- name: Check for poppler upgrade
+  shell: "port outdated | grep '^poppler'"
+  register: throwaway
+  ignore_errors: true  # yes, it's fine if we _don't_ find poppler...
+
+- name: Deactivate poppler
+  command: port deactivate -f poppler
+  become: true
+  when: throwaway.rc == 0
+
+- name: Upgrade installed ports
+  macports:
+    upgrade: true
+  become: true
+
+- name: Install GNU parallel
+  include_role:
+    name: gnu_parallel
+
+- name: Install ports
+  macports:
+    name: "{{ item.key }}"
+    variant: "{{ item.value }}"
+    state: present
+  become: true
+  with_dict: "{{ ports_to_install }}"
+
+- name: Select ports
+  command: "/opt/local/bin/port select {{ item.key }} {{ item.value }}"
+  become: true
+  with_dict: "{{ ports_to_select }}"
+
+# TODO seems not to actually reclaim space :(
+- name: Reclaim space
+  command: /opt/local/bin/port reclaim -N --disable-reminders
+  become: true
