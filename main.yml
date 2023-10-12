@@ -16,7 +16,3 @@
       tags: ['homebrew']
     - role: elliotweiser.osx-command-line-tools
 
-  tasks:
-    - import_tasks: tasks/sudoers.yml
-      when: configure_sudoers
-      tags: ['homebrew']
