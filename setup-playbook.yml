@@ -1,5 +1,5 @@
 ---
-- import_playbook: bootstrap-playbook.yml
+# - import_playbook: bootstrap-playbook.yml
 
 - name: Setup
   hosts: localhost
@@ -92,11 +92,3 @@
             - dotfiles
       tags:
         - tex
-
-    # - import_tasks: tasks/customize.yml
-    #   tags:
-    #     - customize
-
-    # - import_tasks: tasks/ssh_setup.yml
-    #   tags:
-    #     - dotfiles

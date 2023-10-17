@@ -9,7 +9,7 @@ homebrew_installed_packages:
   - readline
   - pv
   - wget
-  - wrk
+  # - wrk
 
 homebrew_cask_apps:
   - firefox
