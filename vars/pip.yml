@@ -22,7 +22,6 @@ pip_user_packages_to_install:
   - aws-shell
 
   # Command line and such
-  - thefuck
   - chat-downloader
   - youtube-dl
 

@@ -14,10 +14,10 @@
     - vars/ports.yml
     - vars/versions.yml
   tasks:
-    - name: Install python modules
-      import_tasks: tasks/pip.yml
-      tags:
-        - pip
+    # - name: Install python modules
+    #   import_tasks: tasks/pip.yml
+    #   tags:
+    #     - pip
 
     - name: Install ports
       import_tasks: tasks/install_ports.yml
