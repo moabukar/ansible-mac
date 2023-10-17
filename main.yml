@@ -14,7 +14,7 @@
   roles:
     # - role: geerlingguy.mac.homebrew
     #   tags: ['homebrew']
-    - role: dotfiles
-    - role: iterm2
-    - role: macports
-    - role: terraform
+    # - role: dotfiles
+    # - role: iterm2
+    # - role: macports
+    # - role: terraform

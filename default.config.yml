@@ -26,13 +26,10 @@ sudoers_custom_config: ''
 
 dotfiles_repo: https://github.com/moabukar/dotfiles.git
 dotfiles_repo_accept_hostkey: true
-dotfiles_repo_local_destination: ~/Development/GitHub/dotfiles
+dotfiles_repo_local_destination: ~/test
 dotfiles_files:
-  - .zshrc
-  - .gitignore
-  - .inputrc
-  - .osx
-  - .vimrc
+  - ~/test/.zshrc
+  - ~/test/.gitignore
 
 homebrew_installed_packages:
   # - ansible # Installed via Pip.
